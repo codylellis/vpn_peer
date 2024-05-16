@@ -1,7 +1,9 @@
 ### Instructions
 
 1. Runs script with path to CSV file. 
-```python3 ipsec_vpn.py [-h] [-d] -i /path/to/some/file.csv```
+```
+python3 ipsec_vpn.py [-h] [-d] -i /path/to/some/file.csv
+```
 
 2. Monitor script with provided tail command. 
 
@@ -19,8 +21,8 @@ CMA,Peer IP,Encryption Domain,FW Name,Community
 ```
 
 ### Paths
-Add Configuration: add_vpn_config.sh
-Delete Configuration: del_vpn_config.sh
+* Add Configuration: add_vpn_config.sh
+* Delete Configuration: del_vpn_config.sh
 
 ### Notes
 Configure IPSEC between Check Point Firewalls. 
