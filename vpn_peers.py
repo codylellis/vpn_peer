@@ -69,7 +69,7 @@ class vpn_peers:
 [Instructions]
 
 1. Runs script with path to CSV file. 
-# python3 ipsec_vpn.py [-h] [-d] -i /path/to/some/file.csv
+# python3 vpn_peers.py [-h] [-d] -i /path/to/some/file.csv
 
 2. Monitor script with provided tail command. 
 
