@@ -8,6 +8,9 @@ from argparse import RawTextHelpFormatter
 import subprocess
 import traceback
 
+#PSK for external peers
+global secret 
+secret = ''
 
 #filepaths
 global gwpath,gwbin,gwout
@@ -273,23 +276,23 @@ exit 0
     def star_community(self, fw, domain, vpncommunity):
         try:
             # add vpn community
-            cmd = f'''mgmt_cli -r true -d {domain} add vpn-community-star name {vpncommunity}'''
-            self.runcmd(cmd, f"add_star_community_{vpncommunity}.sh".replace(' ',''))
+            Log.info(f'[Add Community] : {domain} : {vpncommunity}')
+            cmd = f'''mgmt_cli -r true -d {domain} add vpn-community-star name {vpncommunity} use-shared-secret true'''
+            self.runcmd(cmd, f"add_star_community_{domain}_{vpncommunity}.sh".replace(' ',''))
             #append to configuration files
             addconfig.append(cmd + "\n")
             delcmd = f"mgmt_cli -r true -d {domain} delete vpn-community-star name {vpncommunity} ignore-errors true"
             delconfig.append(delcmd + "\n")
         
             #set vpn community
-            #no option to remove sattelite gateways..., only append to configuration file. 
-            cmd = f'''mgmt_cli -r true -d {domain} set vpn-community-star name {vpncommunity} satellite-gateways.add {fw}'''
+            Log.info(f'[Set Community] : {domain} : {vpncommunity} : {fw}')
+            cmd = f'''mgmt_cli -r true -d {domain} set vpn-community-star name {vpncommunity} satellite-gateways.add {fw} shared-secrets.add.1.external-gateway {fw} shared-secrets.add.1.shared-secret "{secret}"'''
+            self.runcmd(cmd, f"set_star_community_{domain}_{vpncommunity}_{fw}.sh".replace(' ',''))
             addconfig.append(cmd + "\n")
         except Exception as e: 
             Log.error(f'[Star Community] : {e}')
             Log.error(traceback.print_exc())
 
-        
-        
 
 def cleanup():
     # remove undeleted tmp scripts
