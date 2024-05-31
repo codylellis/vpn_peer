@@ -114,8 +114,12 @@ cellis@checkpoint.com
         
         if arguments['debug']: 
             Log.debug("Debug Enabled")
+            global debugvar
+            debugvar = 1 
             self.debug = 1
         else: 
+            global debugvar
+            debugvar = 0 
             self.debug = 0 
         
         if arguments['infile']: 
@@ -327,5 +331,6 @@ if __name__ == "__main__":
         totaltime = endtime - starttime
         Log.info(f"\n Total Run Time : {totaltime} seconds")
         create_configs()
-        cleanup() 
+        if debugvar == 0: 
+            cleanup() 
         end()
