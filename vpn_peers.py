@@ -10,7 +10,7 @@ import traceback
 
 #PSK for external peers
 global secret 
-secret = ''
+secret = 'secret'
 
 #filepaths
 global gwpath,gwbin,gwout

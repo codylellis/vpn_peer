@@ -1,8 +1,13 @@
 ### Instructions
 
-1. Runs script with path to CSV file. 
+0. Adjust 'secret' to be secret used between vpn peers. 
 ```
-python3 ipsec_vpn.py [-h] [-d] -i /path/to/some/file.csv
+secret = 'secret'
+```
+
+1. Run script with path to CSV file. 
+```
+python3 vpn_peers.py [-h] [-d] -i /path/to/some/file.csv
 ```
 
 2. Monitor script with provided tail command. 
