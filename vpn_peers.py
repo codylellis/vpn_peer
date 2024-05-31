@@ -22,7 +22,6 @@ gwout = f'{gwpath}/output'
 addconfig = []
 delconfig = []
 
-
 #logging
 logging.basicConfig(level=logging.DEBUG,
             format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
@@ -112,13 +111,12 @@ cellis@checkpoint.com
                     help='')
         arguments = vars(parser.parse_args())
         
+        global debugvar
         if arguments['debug']: 
             Log.debug("Debug Enabled")
-            global debugvar
             debugvar = 1 
             self.debug = 1
         else: 
-            global debugvar
             debugvar = 0 
             self.debug = 0 
         
